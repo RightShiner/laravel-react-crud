@@ -38,6 +38,7 @@ class ProductController extends Controller
         try{
             $imageName = Str::random().'.'.$request->image->getClientOriginalExtension();
             Storage::disk('public')->putFileAs('product/image', $request->image,$imageName);
+
             Product::create($request->post()+['image'=>$imageName]);
 
             return response()->json([
